@@ -21,7 +21,8 @@ function onBtnClick(e) {
   if (value === '') return;
   getInfo(value)
     .then(data => renderMarkup(data))
-    .catch(error => console.log(error));
+    .catch(error => console.log(error))
+    .finally(() => hideLoader());
   form.reset();
 }
 
@@ -90,7 +91,6 @@ function renderMarkup({ hits }) {
     )
     .join('');
   imagesList.innerHTML = markup;
-  hideLoader();
   const lightbox = new SimpleLightbox('.images-list a', {
     captionsData: 'alt',
     captionDelay: 250,
